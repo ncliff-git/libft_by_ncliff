@@ -1,15 +1,15 @@
 # Source
-SRC		=	ft_memset.c	\
+SRC		=	ft_memset.c		\
 			ft_bzero.c		\
-			ft_memcpy.c	\
+			ft_memcpy.c		\
 			ft_memccpy.c	\
 			ft_memmove.c	\
-			ft_memchr.c	\
-			ft_memcmp.c	\
-			ft_strlen.c	\
+			ft_memchr.c		\
+			ft_memcmp.c		\
+			ft_strlen.c		\
 			ft_strlcpy.c	\
 			ft_strlcat.c	\
-			ft_strchr.c	\
+			ft_strchr.c		\
 			ft_strrchr.c	\
 			ft_strnstr.c	\
 			ft_strncmp.c	\
@@ -21,21 +21,22 @@ SRC		=	ft_memset.c	\
 			ft_isprint.c	\
 			ft_toupper.c	\
 			ft_tolower.c	\
-			ft_calloc.c	\
+			ft_calloc.c		\
+			ft_strdup.c
 
 NAME	=	libft.a
 
-OBJ		=	ft_memset.o	\
+OBJ		=	ft_memset.o		\
 			ft_bzero.o		\
-			ft_memcpy.o	\
+			ft_memcpy.o		\
 			ft_memccpy.o	\
 			ft_memmove.o	\
-			ft_memchr.o	\
-			ft_memcmp.o	\
-			ft_strlen.o	\
+			ft_memchr.o		\
+			ft_memcmp.o		\
+			ft_strlen.o		\
 			ft_strlcpy.o	\
 			ft_strlcat.o	\
-			ft_strchr.o	\
+			ft_strchr.o		\
 			ft_strrchr.o	\
 			ft_strnstr.o	\
 			ft_strncmp.o	\
@@ -47,7 +48,8 @@ OBJ		=	ft_memset.o	\
 			ft_isprint.o	\
 			ft_toupper.o	\
 			ft_tolower.o	\
-			ft_calloc.o	\
+			ft_calloc.o		\
+			ft_strdup.o
 
 HEADER	=	./libft.h
 
