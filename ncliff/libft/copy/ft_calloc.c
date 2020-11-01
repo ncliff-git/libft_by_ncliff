@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memccpy.c                                          :+:      :+:    :+:   */
+/*   calloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 11:37:48 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/30 11:37:51 by ncliff           ###   ########.fr       */
+/*   Created: 2020/10/31 16:46:24 by ncliff            #+#    #+#             */
+/*   Updated: 2020/10/31 16:46:27 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char	*dstc;
-	unsigned char	*srcc;
+	void	*mlc;
 
-	dstc = (unsigned char *)dst;
-	srcc = (unsigned char *)src;
-	while (n-- > 0)
-	{
-		*dstc = *srcc;
-		if (*dstc == c)
-			return (dstc + 1);
-		dstc++;
-		srcc++;
-	}
-	return (NULL);
+	mlc = malloc(count * size);
+	if (!mlc)
+		return (NULL);
+	ft_memset(mlc, 0, count * size);
+	return (mlc);
 }

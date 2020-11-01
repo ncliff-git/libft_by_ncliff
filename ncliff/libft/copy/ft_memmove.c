@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memchr.c                                           :+:      :+:    :+:   */
+/*   memmove.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 13:55:20 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/30 13:55:22 by ncliff           ###   ########.fr       */
+/*   Created: 2020/10/30 12:04:33 by ncliff            #+#    #+#             */
+/*   Updated: 2020/10/30 12:04:42 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char *ps;
+	unsigned char *dstc;
+	unsigned char *srcc;
 
-	ps = (unsigned char *)s;
-	while (n-- > 0)
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	dstc = (unsigned char *)dst;
+	srcc = (unsigned char *)src;
+	if (dstc <= srcc || dstc >= (srcc + len))
 	{
-		if (*ps == c)
-			return (ps);
-		ps++;
+		while (len-- > 0)
+			*dstc++ = *srcc++;
 	}
-	return (NULL);
+	else
+	{
+		dstc += len - 1;
+		srcc += len - 1;
+		while (len--)
+			*dstc-- = *srcc--;
+	}
+	return (dst);
 }

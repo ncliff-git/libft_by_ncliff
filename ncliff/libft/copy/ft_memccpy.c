@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrchr.c                                          :+:      :+:    :+:   */
+/*   memccpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 19:54:57 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/30 19:55:30 by ncliff           ###   ########.fr       */
+/*   Created: 2020/10/30 11:37:48 by ncliff            #+#    #+#             */
+/*   Updated: 2020/10/30 11:37:51 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
-{
-	int i;
-	int lastc;
+#include "libft.h"
 
-	i = 0;
-	lastc = 0;
-	while (s[i] != '\0')
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	unsigned char	*dstc;
+	unsigned char	*srcc;
+	unsigned char	pc;
+
+	dstc = (unsigned char *)dst;
+	srcc = (unsigned char *)src;
+	pc = (unsigned char)c;
+	while (n-- > 0)
 	{
-		if (s[i] == c)
-			lastc = i;
-		i++;
+		*dstc = *srcc;
+		if (*dstc == pc)
+			return (dstc + 1);
+		dstc++;
+		srcc++;
 	}
-	return ((char *)s + lastc);
+	return (NULL);
 }

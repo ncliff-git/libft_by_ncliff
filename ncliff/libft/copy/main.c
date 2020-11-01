@@ -2,24 +2,18 @@
 #include <stdio.h>
 #include "libft.h"
 #include <stdlib.h>
-#include <unistd.h>
-#include <ctype.h>
+//#include <unistd.h>
+//#include <ctype.h>
 
 
-int main(int argc, char **argv)
+int main(/*int argc, char **argv*/)
 {
-	argc += 0;
-	//char dest[10] = "ewer";
-	
-	printf("-----------1------------\n");
-	printf("%s\n", strnstr(argv[1], "\0", 12));
-	printf("-----------2------------\n");
-	printf("%s\n", ft_strnstr(argv[1], argv[2], 12));
+	char src[20] = "123";
+	char dst[30] = "123456789";
+	char dst2[30] = "123456789";
 
-	//while (*argv)
-	//{
-	//	write(1,"-", 1);
-	//}
 
-	//printf("%s\n", dest);
+	printf("%zu: %s\n", ft_strlcpy(dst, src, 5), dst);
+	printf("%zu: %s\n", strlcpy(dst2, src, 5), dst2);
+
 }

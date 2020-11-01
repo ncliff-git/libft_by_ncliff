@@ -12,51 +12,38 @@
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static int	only_ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int i;
-	int n;
-	int pointin;
+	int				i;
+	unsigned char	*ps1;
+	unsigned char	*ps2;
 
 	i = 0;
-	n = 0;
-	pointin = 0;
+	ps1 = (unsigned char *)s1;
+	ps2 = (unsigned char *)s2;
+	while (ps1[i] == ps2[i] && n-- > 0)
+	{
+		if (ps1[i] == '\0')
+			return (0);
+		i++;
+	}
+	return (ps1[i] - ps2[i]);
+}
+
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	int i;
+
+	i = 0;
+	if (*needle == '\0')
+		return ((char *)haystack);
 	while (len-- > 0)
 	{
-		n = 0;
-		while (needle[n++] != '\0')
-		{
-			if (needle[n] != haystack[n + i])
-			{
-				pointin = 0;
-				break;
-			}
-		}
-		if (pointin == 1)
-			return ((char *)haystack + pointin);
+		if (ft_strlen(needle) - 1 > len)
+			return (NULL);
+		if (only_ft_strncmp(haystack + i, needle, ft_strlen(needle) - 1) == 0)
+			return ((char *)haystack + i);
 		i++;
 	}
 	return (NULL);
 }
-
-
-/*
-
-1) if (!*needle)
-  	return ((char *)haystack);
-2) пока копия первой строки не дошла до \0
-	2.1) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/

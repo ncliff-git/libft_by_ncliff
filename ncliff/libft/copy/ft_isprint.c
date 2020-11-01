@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcat.c                                          :+:      :+:    :+:   */
+/*   isprint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 14:42:13 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/30 14:42:17 by ncliff           ###   ########.fr       */
+/*   Created: 2020/10/30 18:32:04 by ncliff            #+#    #+#             */
+/*   Updated: 2020/10/30 18:32:06 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+int	ft_isprint(int c)
 {
-	size_t	srcsize;
-
-	srcsize = ft_strlen(src) + ft_strlen(dst);
-	while (*(dst) != '\0')
-	{
-		dst++;
-		dstsize--;
-	}
-	while (dstsize-- > 1)
-	{
-		*dst = *src;
-		dst++;
-		src++;
-	}
-	--dstsize;
-	*dst = '\0';
-	return (srcsize);
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
 }

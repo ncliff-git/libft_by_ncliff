@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.c                                          :+:      :+:    :+:   */
+/*   strncmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 12:04:33 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/30 12:04:42 by ncliff           ###   ########.fr       */
+/*   Created: 2020/10/31 13:34:02 by ncliff            #+#    #+#             */
+/*   Updated: 2020/10/31 13:34:05 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char *dstc;
-	unsigned char *srcc;
+	int				i;
+	unsigned char	*ps1;
+	unsigned char	*ps2;
 
-	dstc = (unsigned char *)dst;
-	srcc = (unsigned char *)src;
-	if (dstc <= srcc || dstc >= (srcc + len))
+	i = 0;
+	ps1 = (unsigned char *)s1;
+	ps2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (ps1[i] == ps2[i] && n-- > 1)
 	{
-		while (len-- > 0)
-			*dstc++ = *srcc++;
+		if (ps1[i] == '\0')
+			return (0);
+		i++;
 	}
-	else
-	{
-		dstc += len - 1;
-		srcc += len - 1;
-		while (len--)
-			*dstc-- = *srcc--;
-	}
-	return (dst);
+	return (ps1[i] - ps2[i]);
 }

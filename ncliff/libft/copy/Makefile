@@ -24,8 +24,7 @@ SRC		=	ft_memset.c		\
 			ft_calloc.c		\
 			ft_strdup.c		\
 			ft_substr.c		\
-			ft_strjoin.c	\
-			ft_strtrim.c	\
+			ft_strjoin.c	
 
 NAME	=	libft.a
 
@@ -54,8 +53,7 @@ OBJ		=	ft_memset.o		\
 			ft_calloc.o		\
 			ft_strdup.o		\
 			ft_substr.o		\
-			ft_strjoin.o	\
-			ft_strtrim.o	\
+			ft_strjoin.o	
 
 HEADER	=	./libft.h
 
