@@ -26,6 +26,8 @@ SRC		=	ft_memset.c		\
 			ft_substr.c		\
 			ft_strjoin.c	\
 			ft_strtrim.c	\
+			ft_itoa.c		\
+			ft_strmapi.c
 
 NAME	=	libft.a
 
@@ -56,6 +58,8 @@ OBJ		=	ft_memset.o		\
 			ft_substr.o		\
 			ft_strjoin.o	\
 			ft_strtrim.o	\
+			ft_itoa.o		\
+			ft_strmapi.o
 
 HEADER	=	./libft.h
 
