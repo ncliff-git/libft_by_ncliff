@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncmp.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 13:34:02 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/31 13:34:05 by ncliff           ###   ########.fr       */
+/*   Created: 2020/11/02 12:47:12 by ncliff            #+#    #+#             */
+/*   Updated: 2020/11/02 12:49:38 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int				i;
-	unsigned char	*ps1;
-	unsigned char	*ps2;
+	int	n;
+	int i;
 
+	if (s == NULL)
+		return ;
+	n = ft_strlen(s);
 	i = 0;
-	ps1 = (unsigned char *)s1;
-	ps2 = (unsigned char *)s2;
-	while (ps1[i] == ps2[i] && n-- > 0)
+	while (i != n)
 	{
-		if (ps1[i] == '\0')
-			return (0);
-		i++;
+		write(fd, &s[i], 1);
+		++i;
 	}
-	return (ps1[i] - ps2[i]);
 }

@@ -1,24 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bzero.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 21:28:42 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/29 21:28:47 by ncliff           ###   ########.fr       */
+/*   Created: 2020/11/02 13:13:16 by ncliff            #+#    #+#             */
+/*   Updated: 2020/11/02 13:13:18 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char *str;
+	int		i;
+	int		cpn;
+	char	cn;
 
-	str = (unsigned char *)s;
-	while (n-- > 0)
+	i = 1;
+	cpn = n;
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	if (n < 0 && n != -2147483648)
 	{
-		str[n] = '\0';
+		write(fd, "-", 1);
+		cpn = n *= -1;
+	}
+	while (n > 9 && n != -2147483648 && i != 1000000000)
+	{
+		i *= 10;
+		n /= 10;
+	}
+	while (i > 0 && n != -2147483648)
+	{
+		cn = (cpn / i) + '0';
+		write(fd, &cn, 1);
+		cpn %= i;
+		i /= 10;
 	}
 }

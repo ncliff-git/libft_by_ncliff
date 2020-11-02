@@ -10,48 +10,70 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	size_str(char const *s, char c)
+int		num_str(char const *s, char c)
 {
 	int	i;
 	int	pnt;
 
 	i = 0;
 	pnt = 0;
-	while (s[pnt] != '\0')
+	while (s[i])
 	{
-		if ((s[pnt] == c && (s[pnt + 1] != c || s[pnt + 1] != '\0'))
-			|| (s[pnt] != c && s[pnt + 1] == '\0'))
-			i++;
-		pnt++;
+		if (s[i] == c)
+			pnt++;
+		i++;
 	}
+	if (pnt > 0)
+		pnt - 1;
+	return (pnt);
+}
+
+static void	re_split(char **dup, int n)
+{
+	while(n >= 0)
+	{
+		free(*dup[n]);
+		n--;
+	}
+	free(**dup);
+}
+
+static int	size_str(char const *s, int c, int *p)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != c)
+	{
+		i++;
+	}
+	p += (i + 1);
 	return (i);
 }
 
-char		**ft_split(char const *s, char c)
-{
-	int		i;
-	int		start;
-	int		strsum;
-	char	**pars;
 
-	if (!s)
-		return (NULL);
-	pars = malloc(size_str(s, c) * sizeof(char *) + 1);
-	if (pars == NULL)
-		return (NULL);
+char	**ft_split(char const *s, char c)
+{
+	int 	i;
+	int		n;
+	int		cnum;
+	char	**dup;
+	
 	i = 0;
-	strsum = 0;
-	start = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c && (s[i + 1] != c || s[i + 1] != '\0'))
-			start = i + 1;
-		else if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			pars[strsum++] = ft_substr(s, start, i - start + 1);
+	cnum = num_str(s, c);
+	dup = (char **)malloc(cnum * sizeof(char *));
+	if (dup == NULL)
+		return (NULL);
+	while (s[i] != c)
 		i++;
+	i++;
+	n = 0;
+	while (cnum--)
+	{
+		dup[n] = (char *)malloc(size_str(s[i], c, i) * sizeof(char)); 
+		if (dup[n] == NULL)
+			re_split(dup, n);
+		n++;
 	}
-	pars[strsum] = NULL;
-	return (pars);
+	while ()
 }

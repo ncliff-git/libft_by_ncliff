@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.c                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 12:04:33 by ncliff            #+#    #+#             */
-/*   Updated: 2020/10/30 12:04:42 by ncliff           ###   ########.fr       */
+/*   Created: 2020/11/02 12:36:00 by ncliff            #+#    #+#             */
+/*   Updated: 2020/11/02 12:44:46 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_putchar_fd(char c, int fd)
 {
-	unsigned char *dstc;
-	unsigned char *srcc;
-
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	dstc = (unsigned char *)dst;
-	srcc = (unsigned char *)src;
-	if (dstc <= srcc || dstc >= (srcc + len))
-	{
-		while (len-- > 0)
-			*dstc++ = *srcc++;
-	}
-	else
-	{
-		dstc += len - 1;
-		srcc += len - 1;
-		while (len--)
-			*dstc-- = *srcc--;
-	}
-	return (dst);
+	write(fd, &c, 1);
 }
