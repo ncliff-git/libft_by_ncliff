@@ -6,7 +6,7 @@
 /*   By: ncliff <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:51:16 by ncliff            #+#    #+#             */
-/*   Updated: 2020/11/02 21:40:05 by ncliff           ###   ########.fr       */
+/*   Updated: 2020/11/03 14:56:29 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (trim_test(s1[run], set))
 		run++;
 	if (run == (int)ft_strlen(s1))
-		return ("");
+		return (ft_substr("", 0, 1));
 	return (ft_substr(s1, run, end - run));
 }
