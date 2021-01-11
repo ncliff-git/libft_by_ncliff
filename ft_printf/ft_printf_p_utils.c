@@ -6,7 +6,7 @@
 /*   By: ncliff <ncliff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 12:35:21 by ncliff            #+#    #+#             */
-/*   Updated: 2021/01/11 12:48:53 by ncliff           ###   ########.fr       */
+/*   Updated: 2021/01/11 14:36:51 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static char			*ft_hex_rev(char *revhex, int i)
 		i--;
 	}
 	hex[n] = '\0';
-	hex = ft_strjoin("0x", hex, 1);
 	return (hex);
 }
 
@@ -86,8 +85,6 @@ int					ft_printf_p(t_list **l_args, va_list args, int point)
 	int		i;
 
 	num = ft_hex_x(va_arg(args, unsigned long), l_args);
-	if (num[0] == '0' && num[1] == '\0')
-		num = ft_strjoin("0x", num, 1);
 	while (num[point] != '\0')
 		point++;
 	if ((*l_args)->acacy > (-1))
@@ -96,6 +93,8 @@ int					ft_printf_p(t_list **l_args, va_list args, int point)
 			point = 0;
 		point = acacy_d((*l_args)->acacy, point, &num);
 	}
+	num = ft_strjoin("0x", num, 1);
+	point += 2;
 	if ((*l_args)->widht > point && (*l_args)->flag != '-')
 		return (widht_d((*l_args)->widht, point, &num, l_args));
 	else if ((*l_args)->widht > point && (*l_args)->flag == '-')
