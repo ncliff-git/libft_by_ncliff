@@ -6,7 +6,7 @@
 /*   By: ncliff <ncliff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 15:26:36 by ncliff            #+#    #+#             */
-/*   Updated: 2021/01/10 16:01:53 by ncliff           ###   ########.fr       */
+/*   Updated: 2021/01/11 12:56:09 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,28 @@ t_list			*ft_listnew(void)
 int				ft_printf_choice(t_list **l_args, va_list args)
 {
 	if ((*l_args)->arg == 'd' || (*l_args)->arg == 'i')
-	{
 		return (ft_printf_d(l_args, args, 0));
-	}
 	else if ((*l_args)->arg == 'X' || (*l_args)->arg == 'x')
-	{
 		return (ft_printf_h(l_args, args, 0));
-	}
+	else if ((*l_args)->arg == 'u')
+		return (ft_printf_u(l_args, args, 0));
+	else if ((*l_args)->arg == 'c')
+		return (ft_printf_c(l_args, args, 0));
+	else if ((*l_args)->arg == 's')
+		return (ft_printf_s(l_args, args, 0));
+	else if ((*l_args)->arg == 'p')
+		return (ft_printf_p(l_args, args, 0));
+	else if ((*l_args)->arg == '%')
+		return (ft_printf_sp(l_args, 0));
 	else
 	{
+		va_arg(args, int);
 		write(1, "##ERROR##", 9);
 	}
 	return (0);
 }
 
-static int		ft_strlen(const char *s)
+int				ft_strlen(const char *s)
 {
 	int n;
 
@@ -55,7 +62,7 @@ static int		ft_strlen(const char *s)
 	return (n);
 }
 
-char	*ft_strjoin(char *s1, char *s2, int var)
+char			*ft_strjoin(char *s1, char *s2, int var)
 {
 	char	*strjn;
 	int		i;

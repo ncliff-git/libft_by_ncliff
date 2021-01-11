@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_x_utils.c                                :+:      :+:    :+:   */
+/*   ft_printf_p_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncliff <ncliff@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 14:36:32 by ncliff            #+#    #+#             */
-/*   Updated: 2021/01/10 19:37:20 by ncliff           ###   ########.fr       */
+/*   Created: 2021/01/11 12:35:21 by ncliff            #+#    #+#             */
+/*   Updated: 2021/01/11 12:48:53 by ncliff           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_list.h"
 
-char				ft_printf_hex(unsigned int hex, t_list **t_arg)
+char				ft_printf_hex_l(unsigned long hex, t_list **t_arg)
 {
 	if (hex < 10)
 		return ((char)hex + '0');
@@ -47,10 +47,11 @@ static char			*ft_hex_rev(char *revhex, int i)
 		i--;
 	}
 	hex[n] = '\0';
+	hex = ft_strjoin("0x", hex, 1);
 	return (hex);
 }
 
-static char			*ft_hex_x(unsigned int hexin, t_list **t_args)
+static char			*ft_hex_x(unsigned long hexin, t_list **t_args)
 {
 	char	*hex;
 	char	*revhex;
@@ -69,7 +70,7 @@ static char			*ft_hex_x(unsigned int hexin, t_list **t_args)
 		return (NULL);
 	while (hexin > 0)
 	{
-		revhex[i] = ft_printf_hex(hexin % 16, t_args);
+		revhex[i] = ft_printf_hex_l(hexin % 16, t_args);
 		hexin /= 16;
 		i++;
 	}
@@ -79,12 +80,14 @@ static char			*ft_hex_x(unsigned int hexin, t_list **t_args)
 	return (hex);
 }
 
-int					ft_printf_h(t_list **l_args, va_list args, int point)
+int					ft_printf_p(t_list **l_args, va_list args, int point)
 {
 	char	*num;
 	int		i;
 
-	num = ft_hex_x(va_arg(args, unsigned int), l_args);
+	num = ft_hex_x(va_arg(args, unsigned long), l_args);
+	if (num[0] == '0' && num[1] == '\0')
+		num = ft_strjoin("0x", num, 1);
 	while (num[point] != '\0')
 		point++;
 	if ((*l_args)->acacy > (-1))
